@@ -18,7 +18,7 @@ export class FlightComponent implements OnInit {
   inProgress = false;
 
   params = {
-    limit: 10
+    limit: 100
   };
 
   constructor(
