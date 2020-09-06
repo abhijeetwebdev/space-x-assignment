@@ -11,7 +11,10 @@
         <div class="row">
             <app-filter class="col-2">
             </app-filter>
-            <app-list class="col-10" [flights]="flights$ | async">
+            <p *ngIf="inProgress">Loading...</p>
+            <app-list
+                class="col-10"
+                [flights]="flights$ | async">
             </app-list>
         </div>
     </div>
