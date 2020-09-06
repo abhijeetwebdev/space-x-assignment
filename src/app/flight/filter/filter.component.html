@@ -9,7 +9,7 @@
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_year': year}"
                 queryParamsHandling="merge">
-                <span class="badge badge-success">{{ year }}</span>
+                <span class="badge badge-success" [class.selected]="params.launch_year == year">{{ year }}</span>
             </a>
         </div>
     </div>
@@ -20,7 +20,7 @@
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_success': 'true'}"
                 queryParamsHandling="merge">
-                <span class="badge badge-success">True</span>
+                <span class="badge badge-success" [class.selected]="params.launch_success == 'true'">True</span>
             </a>
         </div>
         <div class="inline col-6">
@@ -28,7 +28,7 @@
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_success': 'false'}"
                 queryParamsHandling="merge">
-                <span class="badge badge-success">False</span>
+                <span class="badge badge-success" [class.selected]="params.launch_success == 'false'">False</span>
             </a>
         </div>
     </div>
@@ -39,7 +39,7 @@
                 [routerLink]="['/flight']"
                 [queryParams]="{'land_success': 'true'}"
                 queryParamsHandling="merge">
-                <span class="badge badge-success">True</span>
+                <span class="badge badge-success" [class.selected]="params.land_success == 'true'">True</span>
             </a>
         </div>
         <div class="inline col-6">
@@ -47,7 +47,7 @@
                 [routerLink]="['/flight']"
                 [queryParams]="{'land_success': 'false'}"
                 queryParamsHandling="merge">
-                <span class="badge badge-success">False</span>
+                <span class="badge badge-success" [class.selected]="params.land_success == 'false'">False</span>
             </a>
         </div>
     </div>

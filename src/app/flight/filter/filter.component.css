@@ -1,3 +1,11 @@
 .inline {
     display: inline;
 }
+
+span.badge {
+    background: #37c558;
+}
+
+span.badge.selected {
+    background: green;
+}
