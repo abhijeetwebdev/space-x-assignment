@@ -9,11 +9,11 @@
 <main role="main">
     <div class="container">
         <div class="row">
-            <app-filter class="col-2">
+            <app-filter class="col-md-3 col-sm-6 col-xs-12">
             </app-filter>
             <p *ngIf="inProgress">Loading...</p>
             <app-list
-                class="col-10"
+                class="col-md-9 col-sm-6 col-xs-12"
                 [flights]="flights$ | async">
             </app-list>
         </div>
