@@ -5,6 +5,7 @@ import { FilterComponent } from './filter/filter.component';
 import { CardComponent } from './card/card.component';
 import { ListComponent } from './list/list.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ReversePipe } from './../pipes/reverse.pipe';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [FlightComponent, FilterComponent, CardComponent, ListComponent],
+  declarations: [FlightComponent, FilterComponent, CardComponent, ListComponent, ReversePipe],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
