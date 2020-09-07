@@ -1,6 +1,6 @@
 # SpaceXAssignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
+App Link: https://space-x-assignment.herokuapp.com
 
 ## Development server
 
