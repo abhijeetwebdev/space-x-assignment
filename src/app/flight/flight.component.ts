@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { tap  } from 'rxjs/operators';
 
 import { ApiService } from '../services/api.service';
 import { Flight } from '../models/flight.model';
@@ -44,7 +45,11 @@ export class FlightComponent implements OnInit {
     if (this.inProgress && !refresh) {
       return;
     }
-    return this.apiService.getWithParams('/v3/launches', this.params);
+    this.inProgress = true;
+    return this.apiService.getWithParams('/v3/launches', this.params)
+      .pipe(
+        tap((data) => this.inProgress = false)
+      );
   }
 
   ngOnDestroy() {
