@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-filter',
@@ -8,6 +10,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class FilterComponent implements OnInit {
 
   @Output() updateFilter = new EventEmitter<object>();
+  paramsSub: Subscription;
+  params = {
+    launch_success: null,
+    land_success: null,
+    launch_year: null
+  }
 
   years = [
     '2006',
@@ -26,9 +34,22 @@ export class FilterComponent implements OnInit {
     '2020'
   ];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.paramsSub = this.route.queryParams.subscribe(params => {
+      if (params['launch_success']) {
+        this.params['launch_success'] = params['launch_success'];
+      }
+      if (params['land_success']) {
+        this.params['land_success'] = params['land_success'];
+      }
+      if (params['launch_year']) {
+        this.params['launch_year'] = params['launch_year'];
+      }
+    });
   }
 
   /**
@@ -41,6 +62,10 @@ export class FilterComponent implements OnInit {
       key: type,
       value: value
     });
+  }
+
+  ngOnDestroy() {
+    if (this.paramsSub) this.paramsSub.unsubscribe();
   }
 
 }
