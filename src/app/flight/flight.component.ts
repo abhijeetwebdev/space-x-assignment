@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { tap  } from 'rxjs/operators';
+import { Title, Meta } from '@angular/platform-browser';
 
 import { ApiService } from '../services/api.service';
 import { Flight } from '../models/flight.model';
@@ -23,10 +24,15 @@ export class FlightComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private titleService: Title,
+    private metaService: Meta
   ) { }
 
   ngOnInit(): void {
+
+    this.updateMeta();
+
     this.paramsSub = this.route.queryParams.subscribe(params => {
       if (params['launch_success']) {
         this.params['launch_success'] = params['launch_success'];
@@ -39,6 +45,17 @@ export class FlightComponent implements OnInit {
       }
       this.flights$ = this.getFlights();
     });
+  }
+
+  /**
+   * update meta info for SEO purpose
+   */
+  updateMeta() {
+    this.titleService.setTitle('Space X Flights');
+    this.metaService.addTags([
+      {name: 'keywords', content: 'Space X, Flights'},
+      {name: 'description', content: 'This is a demo application, uses spacex\'s open API to display all the flights information.'},
+    ]);
   }
 
   getFlights(refresh: boolean = true): Observable<any> {
