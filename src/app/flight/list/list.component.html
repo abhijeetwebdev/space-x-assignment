@@ -1,3 +1,6 @@
 <div class="col-md-4">
-    <app-card *ngFor="let flight of flights"></app-card>
+    <app-card
+        *ngFor="let flight of flights"
+        [flight]="flight">
+    </app-card>
 </div>
