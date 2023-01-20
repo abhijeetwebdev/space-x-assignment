@@ -3,21 +3,46 @@
     <div class="col-12">
         <p>Launch Year</p>
         <div *ngFor="let year of years" class="col-6">
-            <h4><span (click)="applyFilter('launch_year', year)" class="badge badge-success">{{ year }}</span></h4>
+            <a
+                [routerLink]="['/flight']"
+                [queryParams]="{'launch_year': year}"
+                queryParamsHandling="merge">
+                <span class="badge badge-success">{{ year }}</span>
+            </a>
         </div>
     </div>
     <div class="col-12">
         <p>Successful Launch</p>
         <div class="col-6">
-            <h4><span (click)="applyFilter('launch_success', 'true')" class="badge badge-success">True</span></h4>
-            <h4><span (click)="applyFilter('launch_success', 'false')" class="badge badge-success">False</span></h4>
+            <a
+                [routerLink]="['/flight']"
+                [queryParams]="{'launch_success': 'true'}"
+                queryParamsHandling="merge">
+                <span class="badge badge-success">True</span>
+            </a>
+            <a
+                [routerLink]="['/flight']"
+                [queryParams]="{'launch_success': 'false'}"
+                queryParamsHandling="merge">
+                <span class="badge badge-success">False</span>
+            </a>
         </div>
     </div>
     <div class="col-12">
         <p>Successful Landing</p>
         <div class="col-6">
-            <h4><span (click)="applyFilter('land_success', 'true')" class="badge badge-success">True</span></h4>
-            <h4><span (click)="applyFilter('land_success', 'false')" class="badge badge-success">False</span></h4>
+            <a
+                [routerLink]="['/flight']"
+                [queryParams]="{'land_success': 'true'}"
+                queryParamsHandling="merge">
+                <span class="badge badge-success">True</span>
+            </a>
+            <a
+                [routerLink]="['/flight']"
+                [queryParams]="{'land_success': 'false'}"
+                queryParamsHandling="merge">
+                <span class="badge badge-success">False</span>
+            </a>
         </div>
     </div>
 </div>

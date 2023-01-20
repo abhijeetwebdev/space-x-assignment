@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 import { ApiService } from '../services/api.service';
 import { Flight } from '../models/flight.model';
@@ -12,24 +13,42 @@ import { Flight } from '../models/flight.model';
 export class FlightComponent implements OnInit {
 
   flights$: Observable<Flight>;
-  params = { limit: 10 };
+  paramsSub: Subscription;
+  inProgress = false;
 
-  constructor(private apiService: ApiService) { }
+  params = {
+    limit: 10
+  };
+
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) { }
 
   ngOnInit(): void {
-    this.flights$ = this.getFlights();
+    this.paramsSub = this.route.queryParams.subscribe(params => {
+      if (params['launch_success']) {
+        this.params['launch_success'] = params['launch_success'];
+      }
+      if (params['land_success']) {
+        this.params['land_success'] = params['land_success'];
+      }
+      if (params['launch_year']) {
+        this.params['launch_year'] = params['launch_year'];
+      }
+      this.flights$ = this.getFlights();
+    });
   }
 
-  getFlights(args?: any): Observable<any> {
-    const params = args ? args : this.params;
-    return this.apiService.getWithParams('/v3/launches', params);
+  getFlights(refresh: boolean = true): Observable<any> {
+    if (this.inProgress && !refresh) {
+      return;
+    }
+    return this.apiService.getWithParams('/v3/launches', this.params);
   }
 
-  updateFilter(data) {
-    // update query and search again
-    const params = {...this.params };
-    params[data.key] = data.value;
-    this.getFlights(params);
+  ngOnDestroy() {
+    if (this.paramsSub) this.paramsSub.unsubscribe();
   }
 
 }
