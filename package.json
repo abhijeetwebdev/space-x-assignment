@@ -2,6 +2,8 @@
   "name": "space-x-assignment",
   "version": "0.0.0",
   "scripts": {
+    "start:heroku": "npm run serve:ssr",
+    "postinstall": "npm run build:ssr",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
