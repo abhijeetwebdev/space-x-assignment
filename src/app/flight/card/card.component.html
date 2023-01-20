@@ -1,0 +1,17 @@
+<div class="card mb-4 box-shadow">
+    <div class="card-body">
+        <img class="card-img-top bg-light" [src]="flight.links.mission_patch_small" alt="Card image">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ flight.mission_name }}</h5>
+        <ng-container *ngIf="flight.mission_id && flight.mission_id.length > 0">
+            <p>Mission Ids</p>
+            <ul *ngFor="let mid of flight.mission_id">
+                <li>{{ mid }}</li>
+            </ul>
+        </ng-container>
+        <p>Launch Year: {{ flight.launch_year }}</p>
+        <p>Successful Launch: {{ flight.launch_success ? 'Yes' : 'No' }}</p>
+        <p>Successful Landing: {{ flight.launch_year }}</p>
+    </div>
+</div>
