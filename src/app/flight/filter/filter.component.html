@@ -1,8 +1,10 @@
 <div class="row">
-    <h2>Filters</h2>
-    <div class="col-12">
+    <div class="inline col-12">
+        <p><strong>Filters</strong></p>
+    </div>
+    <div class="inline col-12">
         <p>Launch Year</p>
-        <div *ngFor="let year of years" class="col-6">
+        <div *ngFor="let year of years" class="inline col-6">
             <a
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_year': year}"
@@ -11,15 +13,17 @@
             </a>
         </div>
     </div>
-    <div class="col-12">
+    <div class="inline col-12">
         <p>Successful Launch</p>
-        <div class="col-6">
+        <div class="inline col-6">
             <a
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_success': 'true'}"
                 queryParamsHandling="merge">
                 <span class="badge badge-success">True</span>
             </a>
+        </div>
+        <div class="inline col-6">
             <a
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_success': 'false'}"
@@ -28,15 +32,17 @@
             </a>
         </div>
     </div>
-    <div class="col-12">
+    <div class="inline col-12">
         <p>Successful Landing</p>
-        <div class="col-6">
+        <div class="inline col-6">
             <a
                 [routerLink]="['/flight']"
                 [queryParams]="{'land_success': 'true'}"
                 queryParamsHandling="merge">
                 <span class="badge badge-success">True</span>
             </a>
+        </div>
+        <div class="inline col-6">
             <a
                 [routerLink]="['/flight']"
                 [queryParams]="{'land_success': 'false'}"
