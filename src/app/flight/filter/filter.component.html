@@ -4,7 +4,7 @@
     </div>
     <div class="inline col-12">
         <p>Launch Year</p>
-        <div *ngFor="let year of years" class="inline col-6">
+        <div *ngFor="let year of years | reverse" class="inline col-6">
             <a
                 [routerLink]="['/flight']"
                 [queryParams]="{'launch_year': year}"
